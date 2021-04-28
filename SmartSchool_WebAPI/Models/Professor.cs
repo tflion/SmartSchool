@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace SmartSchool_WebAPI.Models
 {
     public class Professor
@@ -5,16 +7,14 @@ namespace SmartSchool_WebAPI.Models
         public Professor() { }
         
         
-        public Professor(int id, string nome, string disciplina)
+        public Professor(int id, string nome)
         {
             this.Id = id;
             this.Nome = nome;
-            this.Disciplina = disciplina;
-
         }
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Disciplina { get; set; }
+        public IEnumerable<Disciplina> Disciplinas{ get; set; }
 
 
     }
