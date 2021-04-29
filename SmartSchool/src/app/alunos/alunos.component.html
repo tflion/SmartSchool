@@ -1,15 +1,12 @@
 <div class="row">
   
-  <div class="col-sm-6" *ngIf="alunoSelecionado">
+  <div class="col-sm-6" *ngIf="alunoSelecionado">   
     
-    <div class="row">
-      <div class="mr-auto">
-        <app-titulo [titulo]="'Cód. Aluno: ' + alunoSelecionado.id"></app-titulo>    
-      </div>
-      <div class="mt-1">
-        <button class="btn btn-sm btn-danger" (click)="voltar()">Fechar</button>
-      </div>
-    </div>
+    <app-titulo [titulo]="(alunoSelecionado.id === 0 ? 'Novo Aluno' : 'Cód. Aluno: ' + alunoSelecionado.id )">
+      
+      <button class="btn btn-sm btn-danger" (click)="voltar()">Fechar</button>   
+    </app-titulo>    
+    
     
     <form [formGroup]="alunoForm" (submit)="alunoSubmit()">
       <div class="form-group">
@@ -26,13 +23,17 @@
       </div>
       <div class="form-group">
         <hr>
-        <button class="btn btn-success" [disabled]="!alunoForm.valid">Enviar</button>
+        <button class="btn btn-success" [disabled]="!alunoForm.valid">Salvar</button>
       </div>
     </form>
   </div>  
   
   <div [ngClass]="{'col-sm-6': alunoSelecionado, 'col-sm-12': !alunoSelecionado}">
-    <app-titulo [titulo]="titulo"></app-titulo>
+    <app-titulo [titulo]="titulo">
+      <button class="btn btn-success" (click)="alunoNovo()">
+        Cadastrar Aluno
+      </button>
+    </app-titulo>
     
     <table class="table table-hover">
       <thead class="thead-light">
@@ -55,7 +56,7 @@
           <td>
             <div class="btn-group">          
               <button class="btn btn btn-sm btn-outline-primary" (click)="openModal(template)">Professores</button>
-              <button class="btn btn btn-sm btn-outline-danger">Desativar</button>
+              <button class="btn btn btn-sm btn-outline-danger" (click)="deletarAluno(aluno.id)">Excluir</button>
             </div>
           </td>
         </tr>

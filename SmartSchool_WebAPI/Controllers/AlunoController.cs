@@ -116,7 +116,7 @@ namespace SmartSchool_WebAPI.Controllers
                 _repo.Delete(aluno);
 
                 if(await _repo.SaveChangesAsync()){
-                    return Ok("Aluno deletado!");
+                    return Ok(new { message = "Aluno deletado!"});
                 }
               
             }
